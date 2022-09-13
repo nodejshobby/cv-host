@@ -1,0 +1,136 @@
+:root {
+    --primary-color: #0101b3;
+    --secondary-color: #fd8813;
+    --white-color: #fff;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    background-color: var(--white-color);
+    line-height: 1.7;
+    margin-top: 3rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+a:not(.nav-link, .btn) {
+    color: var(--primary-color) !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white-color) !important;
+    border: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.btn:hover {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.navbar-brand:hover {
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.navbar-toggler {
+    font-size: 1.7rem;
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.text-orange {
+    color: var(--secondary-color) !important;
+}
+
+#hero {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+#hero-button {
+    background-color: var(--white-color);
+    color: var(--primary-color) !important;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#hero-button:hover {
+    background-color: var(--white-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.section-padding {
+    padding: 4rem 0;
+}
+
+.box i {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 0.9rem;
+}
+
+.owl-nav {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 1.8rem;
+}
+
+.owl-nav .owl-prev {
+    margin-right: 1.5rem;
+}
+
+.owl-nav .owl-prev,
+.owl-next {
+    font-size: 1.5rem !important;
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+    border-radius: 50%;
+}
+
+.owl-prev i, .owl-next i {
+    padding: .6rem .8rem;
+}
+
+.owl-nav .disabled {
+    opacity: 0.6;
+}
