@@ -2,7 +2,7 @@
     --primary-color: #0101b3;
     --secondary-color: #fd8813;
     --darker-blue: #000091;
-    --light-variant-blue: 84, 84, 224;
+    --light-variant-blue: 1, 1, 179;
     --white-color: #fff;
     --yellow-color: #fdcc00;
 }
@@ -40,7 +40,7 @@ input {
 }
 
 .form-control:focus {
-    box-shadow: 0 0 0 0.05rem rgba(1, 1, 209, 0.5);;
+    box-shadow: 0 0 0 0.05rem rgba(1, 1, 209, 0.5);
 }
 
 a:not(.nav-link, .btn) {
@@ -218,13 +218,9 @@ a {
 }
 
 .accordion-item .accordion-button:focus {
-    box-shadow: 0 0 0 0.15rem rgb(1, 1, 179, 0.3);
-}
+    box-shadow: 0 0 0 0.05rem rgba(1, 1, 209, 0.5);
+};
 
-.service-icon {
-    color: var(--secondary-color);
-    font-size: 1.7rem;
-}
 .template {
     position: relative;
     transition: all 0.7s ease;
@@ -244,7 +240,7 @@ a {
     position: absolute;
     top: 0;
     bottom: 0;
-    background-color: rgba(var(--light-variant-blue), .5);
+    background-color: rgba(var(--light-variant-blue), .3);
     align-items: center;
     justify-content: center;
     display: none;
@@ -266,4 +262,9 @@ a {
 
 .form-action-link {
     font-weight: 600;
+}
+
+span.service-icon {
+    color: var(--secondary-color);
+    font-size: 1.7rem;
 }
