@@ -7,3 +7,4 @@
 @include('partials.user_footer')
 
 @include('partials.user_script')
+
