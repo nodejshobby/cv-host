@@ -7,7 +7,13 @@
         <div class="col-md-10 col-lg-8 text-center">
             <h1 class="mb-3">Get a professional CV crafted in less than <span class="text-orange">10 minutes</span>.</h1>
             <p class="mb-4">Effortlessly design and build a professional CV that get HR talking and higher chance of winning a job.</p>
-            <a href="#" class="btn btn-primary" id="hero-button">Get Started <span><i class="fa fa-arrow-right"></i></span> </a>
+            @guest
+                <a href="{{ route('register.show') }}" class="btn btn-primary" id="hero-button">Get Started <span><i class="fa fa-arrow-right"></i></span> </a>
+            @endguest
+
+            @auth
+                <a href="" class="btn btn-primary" id="hero-button"><span><i class="fa fa-plus-circle"></i></span> Create CV</a>
+            @endauth
         </div>
     </div>
 </header>
@@ -96,7 +102,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -105,7 +111,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -114,7 +120,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -122,7 +128,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -130,7 +136,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -138,7 +144,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="template">
@@ -146,7 +152,7 @@
                         <img src="{{ asset('images/CV image.png') }}" alt="" class="img-fluid">
                     </a>
                     <div class="action">
-                        <a href="#" class="btn btn-primary py-2 px-3">Use Template</a>
+                        <a href="#" class="btn btn-primary py-2 px-3"><i class="fa fa-edit fa-2x"></i></a>
                     </div>
                 </div>
             </div>

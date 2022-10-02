@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -42,4 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isUser(){
+        return $this->role_id === Role::USER;
+    }
+
+    public function isAdmin(){
+        return $this->role_id === Role::ADMIN;
+    }
+
+    public function cvs(){
+        return $this->hasMany(CV::class);
+    }
 }

@@ -19,7 +19,7 @@ body {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 500;
     background-color: var(--white-color);
     line-height: 1.7;
@@ -51,7 +51,7 @@ a {
     text-decoration: none;
 }
 
-.btn {
+.btn-primary {
     background-color: var(--primary-color);
     color: var(--white-color) !important;
     border: var(--primary-color);
@@ -60,19 +60,19 @@ a {
     box-shadow: none;
 }
 
-.btn:hover {
+.btn-primary:hover {
     background-color: var(--primary-color) !important;
 }
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--primary-color);
 }
 
 .navbar-brand:hover {
     font-weight: 700 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.7rem !important;
 }
 
 .navbar-brand:hover,
@@ -116,10 +116,10 @@ a {
 #hero-button {
     background-color: var(--white-color);
     color: var(--primary-color) !important;
-    padding: 0.6rem 1.2rem;
+    padding: 0.9rem 1.6rem;
     font-weight: 600;
     font-size: 1.06rem;
-    transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
 }
 
 #hero-button:hover {
@@ -223,7 +223,11 @@ a {
 
 .template {
     position: relative;
-    transition: all 0.7s ease;
+    transition: all 0.5s ease;
+}
+
+.template .action {
+    transition: all 0.5s ease;
 }
 
 .template .template-icon  {
@@ -240,20 +244,23 @@ a {
     position: absolute;
     top: 0;
     bottom: 0;
-    background-color: rgba(var(--light-variant-blue), .3);
+    background-color: rgba(var(--light-variant-blue), .2);
     align-items: center;
     justify-content: center;
     display: none;
 }
 
 .template .action .btn {
-    background-color: var(--white-color);
-    color: var(--primary-color) !important;
+    background-color: var(--secondary-color);
+    color: var(--white-color) !important;
+    z-index: 10;
+    border-radius: .6rem;
+    padding: .55rem 1rem !important;
 }
 
 .template .action .btn:hover {
-    background-color: var(--white-color) !important;
-    color: var(--primary-color) !important;
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
 }
 
 .template:hover .action {
@@ -267,4 +274,114 @@ a {
 span.service-icon {
     color: var(--secondary-color);
     font-size: 1.7rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.dataTables_filter input {
+    height: 2.5rem;
+}
+
+.dataTables_wrapper  .row:first-of-type {
+    margin-bottom: 1rem !important;
+}
+
+.center-form-layout {
+    margin: 4rem auto;
+}
+
+
+.cv-display {
+    position: relative;
+}
+
+.cv-display .cv-display-icon {
+    position: absolute;
+    z-index: 10;
+    font-size: 1.4rem;
+    top: 3%;
+    right: 10%;
+}
+
+.cv-display .action {
+    transition: all 0.5s ease;
+    display: none;
+}
+
+.cv-display .img-wrapper {
+    position: relative;
+}
+
+.cv-display .action {
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    bottom: 7%;
+    display: none;
+    justify-content: center;
+}
+
+
+.cv-display .action .btn {
+    background-color: var(--secondary-color);
+    color: var(--white-color) !important;
+    z-index: 10;
+    border-radius: 30px;
+    padding: 0.9rem 1.1rem !important;
+}
+
+.cv-display .action .btn:hover {
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+}
+
+.cv-display:hover .action {
+    display: flex;
+}
+
+
+.outline-primary {
+      border: .1rem solid var(--primary-color);
+      padding: .6rem .8rem;
+      transition: all .5s ease;
+}
+
+.outline-primary:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+textarea {
+    resize: none;
+}
+
+#cv-view h5 {
+    white-space: nowrap;
+}
+
+#userDetail p {
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    opacity: .9;
+}
+
+@media (max-width: 767.98px){
+    .dataTables_length {
+        margin-bottom: .8rem;
+    }
 }

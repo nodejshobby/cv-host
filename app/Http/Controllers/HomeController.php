@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 class HomeController extends Controller
 {
     //Load Home Page
-    public function LoadHome(){
+    public function show(){
         return view('user.home');
     }
 }
