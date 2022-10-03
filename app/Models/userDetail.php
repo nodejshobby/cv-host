@@ -10,4 +10,8 @@ class userDetail extends Model
     use HasFactory;
 
     protected $fillable = ['cv_id','firstname','lastname','email','state','city','country','postal_code','profession'];
+
+    public function CV(){
+       return $this->belongsTo(CV::class,'cv_id');
+    }
 }

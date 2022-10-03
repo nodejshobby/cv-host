@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Summary;
 use App\Models\CV;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class SummaryController extends Controller
@@ -15,6 +16,8 @@ class SummaryController extends Controller
      */
     public function index(CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         return view('cv.summary', compact('cv'));
     }
 
@@ -25,6 +28,8 @@ class SummaryController extends Controller
      */
     public function create(Request $request, CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         $request->validate([
             'summary'=> 'required|min:150|max:150'
         ]);
@@ -69,6 +74,8 @@ class SummaryController extends Controller
      */
     public function edit(Summary $summary)
     {
+        Gate::authorize('crudCV', $summary->CV);
+
         return view('cv.summary_edit', compact('summary'));
     }
 
@@ -81,12 +88,14 @@ class SummaryController extends Controller
      */
     public function update(Request $request, Summary $summary)
     {
+        Gate::authorize('crudCV', $summary->CV);
+
         $request->validate([
             'summary'=> 'required|min:150|max:150'
         ]);
 
         if($summary->update(['description' => $request->summary])){
-            return redirect()->route('cv.index', ['cv'=> $summary->cv_id])->withSuccess("Summary is updated successfully");
+            return redirect()->route('cv.index', ['cv'=> $summary->CV])->withSuccess("Summary is updated successfully");
         }
     }
 

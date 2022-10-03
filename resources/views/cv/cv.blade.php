@@ -46,7 +46,7 @@
     </div>
 
     <div class="row justify-content-center align-items-center" id="cv-view">
-        <div class="col-11 col-md-10 col-lg-8 bg-light p-3 p-md-4 rounded">
+        <div class="col-11 col-md-10 col-lg-8 bg-light p-3 px-4 p-md-4 rounded">
             {{-- User Detail --}}
             <div class="mb-4" id="userDetail" class="userDetail">
                 <h3 class="text-primary"><i class="fa fa-user"></i> User Details</h3>
@@ -178,10 +178,10 @@
                     
                     @foreach ($cv->WorkHistory as $history )
                         <div class="col-12">
-                            <div class="bg-white rounded p-3" id="education">
-                                <p class="mb-1"><i class="fa fa-university"></i> <b>{{ $history->job_title }}</b> - {{ $history->employer }}</p>
+                            <div class="bg-white rounded p-3" id="history">
+                                <p class="mb-1"><i class="fa fa-building"></i> <b>{{ $history->job_title }}</b> - {{ $history->employer }}</p>
                             <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                <small><i class="fa fa-graduation-cap"></i> <b>{{ $history->country }}</b> [{{ $history->city }}]</small>
+                                <small><i class="fa fa-map-marker-alt"></i> <b>{{ $history->country }}</b> [{{ $history->city }}]</small>
                                 <small><i class="fa fa-calendar-alt"></i>  {{ $history->start_date }} <b> to </b> {{ $history->end_date }}</small>
                             </div>
                             <div class="action my-2">
@@ -207,18 +207,35 @@
                 </div>
                 @endif
             </div>
-
+            {{-- Skill --}}
             <div class="mb-4" id="skill" class="skill">
                 <h3 class="text-primary"><i class="fa fa-cogs"></i> Skills</h3>
                 @if ($cv->Skill()->get()->count())
-                <div class="row mt-3 bg-white px-2 py-3 px-md-3 py-lg-4 rounded">
-                    <p>{{ $cv->Summary->description }}</p>
+                <div class="row mt-3 g-3">
+                     @foreach ($cv->Skill as $skill )
+                         <div class="col-lg-6">
+                            <div class="bg-white p-3 rounded">
+                                <b>{{ $skill->skill_name }}</b> - {{ Str::ucfirst($skill->skill_level) }}
+                                <div class="action-skill mt-2">
+                                    <a href="{{ route('skill.edit', ['skill'=> $skill]) }}" class="btn btn-sm btn-primary me-2" data-bs-toggle="tooltip" title="Edit Skill"> <i class="fa fa-edit"></i> Edit</a>
+                                    <form action="{{ route('skill.delete', ['skill' => $skill]) }}" method="post" class="d-inline-flex">
+                                        @csrf
+                                        @method('DELETE')
     
-                    <a href="{{ route('summary.edit', ['summary'=> $cv->Skill]) }}" class="text-primary"> <i class="fa fa-edit"></i> Edit Summary</a>
+                                        <button class="btn btn-sm btn-danger" href="{{ route('skill.edit', ['skill'=> $skill]) }}" onclick="return confirm('Are you sure you want to delete?')" data-bs-toggle="tooltip" title="Delete Skill"> <i class="fa fa-trash"></i> Delete</button>
+                                    </form>
+                                   
+                                </div>
+                               
+                            </div>
+                         </div>
+                     @endforeach
+                     <a href="{{ route('skill.create',['cv'=> $cv ]) }}" class="text-primary"><i class="fa fa-plus"></i> Add  another Skill</a>
                 </div>
+                
                 @else
                 <div class="row">
-                    <a href="{{ route('summary.create',['cv'=> $cv ]) }}" class="text-primary"><i class="fa fa-plus"></i> Add Skill</a>
+                    <a href="{{ route('skill.create',['cv'=> $cv ]) }}" class="text-primary"><i class="fa fa-plus"></i> Add Skill</a>
                 </div>
                 @endif
             </div>

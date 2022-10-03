@@ -13,6 +13,7 @@ use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\CVController;
 use App\Http\Controllers\WorkHistoryController;
+use App\Http\Controllers\SkillController;
 
 
 
@@ -99,6 +100,15 @@ Route::controller(WorkHistoryController::class)->name('history.')->middleware('a
     Route::get('history/edit/{history}', 'edit')->name('edit');
     Route::put('history/update/{history}', 'update')->name('update');
     Route::delete('history/{history}', 'delete')->name('delete');
+});
+
+
+Route::controller(SkillController::class)->name('skill.')->middleware('auth')->group(function(){
+    Route::get('skill/{cv}', 'index')->name('index');
+    Route::post('skill/{cv}', 'create')->name('create');
+    Route::get('skill/edit/{skill}', 'edit')->name('edit');
+    Route::put('skill/update/{skill}', 'update')->name('update');
+    Route::delete('skill/{skill}', 'delete')->name('delete');
 });
 
 

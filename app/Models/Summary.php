@@ -10,4 +10,8 @@ class Summary extends Model
     use HasFactory;
 
     protected $fillable = ['cv_id','description'];
+
+    public function CV(){
+        return $this->belongsTo(CV::class,'cv_id');
+     }
 }

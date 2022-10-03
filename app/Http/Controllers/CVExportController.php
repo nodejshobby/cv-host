@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-use App\Models\CV;
-
-class CVController extends Controller
+class CVExportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CV $cv)
+    public function index()
     {
-        Gate::authorize('crudCV', $cv);
-
-        return view('cv.cv', compact('cv'));
+        //
     }
 
     /**
@@ -59,9 +54,9 @@ class CVController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CV $cv)
+    public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -82,12 +77,8 @@ class CVController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(CV $cv)
+    public function destroy($id)
     {
-        Gate::authorize('crudCV', $cv);
-
-        if($cv->delete()){
-            return redirect()->route('home.show')->withSuccess('Your CV is successfully deleted');
-        }
+        //
     }
 }

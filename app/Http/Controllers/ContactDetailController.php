@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\contactDetail;
 use App\Models\CV;
 use App\Models\userDetail;
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class ContactDetailController extends Controller
@@ -16,6 +18,8 @@ class ContactDetailController extends Controller
      */
     public function index(CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         return view('cv.contact_detail', compact('cv'));
     }
 
@@ -26,6 +30,8 @@ class ContactDetailController extends Controller
      */
     public function create(Request $request, CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         $request->validate([
             'phone_number' => 'required|min:11',
             'website' => 'nullable|url',
@@ -79,6 +85,8 @@ class ContactDetailController extends Controller
      */
     public function edit(contactDetail $contactDetail)
     {
+        Gate::authorize('crudCV', $contactDetail->CV);
+
         return view('cv.contact_detail_edit', compact('contactDetail'));
     }
 
@@ -91,6 +99,8 @@ class ContactDetailController extends Controller
      */
     public function update(Request $request, contactDetail $contactDetail)
     {
+        Gate::authorize('crudCV', $contactDetail->CV);
+
         $request->validate([
             'phone_number' => 'required|min:11',
             'website' => 'nullable|url',
@@ -104,7 +114,7 @@ class ContactDetailController extends Controller
             'linkedin_page' => $request->linkedin,
             'twitter_page' => $request->twitter
         ])){
-            return redirect()->route('cv.index', ['cv'=> $contactDetail->cv_id])->withSuccess("Contact detail is updated successfully");
+            return redirect()->route('cv.index', ['cv'=> $contactDetail->CV])->withSuccess("Contact detail is updated successfully");
         }
     }
 

@@ -11,4 +11,8 @@ class contactDetail extends Model
 
     protected $fillable=['cv_id','phone_number', 'linkedin_page','twitter_page','website'];
 
+    public function CV(){
+        return $this->belongsTo(CV::class,'cv_id');
+     }
+
 }

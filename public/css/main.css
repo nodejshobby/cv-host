@@ -39,8 +39,11 @@ input {
     height: 3rem;
 }
 
-.form-control:focus {
+.form-control:focus, .form-select:focus {
     box-shadow: 0 0 0 0.05rem rgba(1, 1, 209, 0.5);
+}
+.form-select {
+    font-size: 18px;
 }
 
 a:not(.nav-link, .btn) {
@@ -116,7 +119,7 @@ a {
 #hero-button {
     background-color: var(--white-color);
     color: var(--primary-color) !important;
-    padding: 0.9rem 1.6rem;
+    padding: 0.8rem 1.4rem;
     font-weight: 600;
     font-size: 1.06rem;
     transition: background-color 0.25s ease-in-out;
@@ -379,6 +382,22 @@ textarea {
 .btn-primary:hover {
     opacity: .9;
 }
+
+.btn:disabled {
+    opacity: .7;
+}
+
+.btn-primary:disabled {
+    background-color: var(--primary-color);
+    opacity: .7;
+}
+
+
+
+
+
+
+
 
 @media (max-width: 767.98px){
     .dataTables_length {

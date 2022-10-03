@@ -10,4 +10,8 @@ class WorkHistory extends Model
     use HasFactory;
 
     protected $fillable=['cv_id','job_title','employer','city','country','start_date','end_date'];
+
+    public function CV(){
+        return $this->belongsTo(CV::class,'cv_id');
+     }
 }

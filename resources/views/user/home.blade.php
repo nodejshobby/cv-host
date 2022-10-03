@@ -12,7 +12,7 @@
             @endguest
 
             @auth
-                <a href="" class="btn btn-primary" id="hero-button"><span><i class="fa fa-plus-circle"></i></span> Create CV</a>
+                <a href="{{ route('template.index') }}" class="btn btn-primary" id="hero-button"><span><i class="fa fa-plus-circle"></i></span> Create CV</a>
             @endauth
         </div>
     </div>

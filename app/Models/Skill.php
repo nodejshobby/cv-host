@@ -10,4 +10,8 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable=['cv_id','skill_name','skill_level'];
+
+    public function CV(){
+        return $this->belongsTo(CV::class,'cv_id');
+     }
 }

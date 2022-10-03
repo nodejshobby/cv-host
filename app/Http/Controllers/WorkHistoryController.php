@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CV;
 use App\Models\WorkHistory;
+use Illuminate\Support\Facades\Gate;
 
 class WorkHistoryController extends Controller
 {
@@ -15,6 +16,8 @@ class WorkHistoryController extends Controller
      */
     public function index(CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         return view('cv.work_history', compact('cv'));
     }
 
@@ -25,6 +28,8 @@ class WorkHistoryController extends Controller
      */
     public function create(Request $request, CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         $request->validate([
             'job_title' => 'required',
             'employer' => 'required',
@@ -79,6 +84,8 @@ class WorkHistoryController extends Controller
      */
     public function edit(WorkHistory $history)
     {
+        Gate::authorize('crudCV', $history->CV);
+
         return view('cv.work_history_edit', compact('history'));
     }
 
@@ -91,6 +98,8 @@ class WorkHistoryController extends Controller
      */
     public function update(Request $request, WorkHistory $history)
     {
+        Gate::authorize('crudCV', $history->CV);
+
         $request->validate([
             'job_title' => 'required',
             'employer' => 'required',
@@ -122,8 +131,10 @@ class WorkHistoryController extends Controller
      */
     public function delete(WorkHistory $history)
     {
+        Gate::authorize('crudCV', $history->CV);
+
         if($history->delete()){
-            return redirect()->route('cv.index',['cv'=> $history->cv_id])->withSuccess("Work History is deleted successfully");
+            return redirect()->route('cv.index',['cv'=> $history->CV])->withSuccess("Work History is deleted successfully");
         }
     }
 }

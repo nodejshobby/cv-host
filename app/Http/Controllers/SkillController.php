@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use App\Models\CV;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -12,9 +14,11 @@ class SkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CV $cv)
     {
-        //
+        Gate::authorize('crudCV', $cv);
+
+        return view('cv.skill', compact('cv'));
     }
 
     /**
@@ -22,9 +26,25 @@ class SkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, CV $cv)
     {
-        //
+        Gate::authorize('crudCV', $cv);
+
+        $request->validate([
+            'skill_name' => 'required',
+            'skill_level' => 'required',
+        ]);
+
+        if($cv->Skill()->where('skill_name', $request->skill_name)->get()->count()){
+            return redirect()->route('cv.index', ['cv' => $cv])->withInfo("Skill is already added");
+        }
+
+        if($cv->Skill()->create([
+            'skill_name' => $request->skill_name,
+            'skill_level' => $request->skill_level
+        ])){
+            return redirect()->route('cv.index', ['cv' => $cv])->withSuccess("Skill is added successfully");
+        }
     }
 
     /**
@@ -46,7 +66,7 @@ class SkillController extends Controller
      */
     public function show(Skill $skill)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +77,9 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        //
+        Gate::authorize('crudCV', $skill->CV);
+
+        return view('cv.skill_edit', compact('skill'));
     }
 
     /**
@@ -69,7 +91,20 @@ class SkillController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        Gate::authorize('crudCV', $skill->CV);
+
+        $request->validate([
+            'skill_name' => 'required',
+            'skill_level' => 'required',
+        ]);
+
+
+        if($skill->update([
+            'skill_name' => $request->skill_name,
+            'skill_level' => $request->skill_level
+        ])){
+            return redirect()->route('cv.index', ['cv' => $skill->CV])->withSuccess("Skill is updated successfully");
+        }
     }
 
     /**
@@ -78,8 +113,12 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function delete(Skill $skill)
     {
-        //
+        Gate::authorize('crudCV', $skill->CV);
+
+        if($skill->delete()){
+            return redirect()->route('cv.index', ['cv' => $skill->CV ])->withSuccess("Skill is deleted successfully");
+        }
     }
 }

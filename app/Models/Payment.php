@@ -10,4 +10,8 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable =['name','status','amount','pay_date','cv_id'];
+
+    public function CV(){
+        return $this->belongsTo(CV::class,'cv_id');
+     }
 }

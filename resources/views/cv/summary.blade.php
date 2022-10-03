@@ -26,8 +26,9 @@
                     <div class="row mb-3">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="profession">Summary</label>
-                                <textarea class="form-control" name="summary" id="summary" cols="20" rows="5" placeholder="Summary"></textarea>
+                                <label for="summary">Summary</label>
+                                <textarea class="form-control" name="summary" id="summary" cols="20" rows="5" placeholder="Enter your bio, description or summary" required></textarea>
+
                                 @error('summary')
                                     <small class="text-danger fw-normal">{{ $message }}</small>
                                 @enderror

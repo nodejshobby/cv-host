@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\userDetail;
+use App\Models\CV;
 use Illuminate\Http\Request;
 use App\Models\Template;
+use Illuminate\Support\Facades\Gate;
 
 class UserDetailController extends Controller
 {
@@ -34,6 +36,7 @@ class UserDetailController extends Controller
             'profession' => 'required',
             'postal_code' => 'required|numeric'
         ]);
+
 
 
         if($cv = auth()->user()->cvs()->create(['template_id'=> 5])){
@@ -87,6 +90,9 @@ class UserDetailController extends Controller
      */
     public function edit(userDetail $userDetail)
     {
+        
+        Gate::authorize('crudCV', $userDetail->CV);
+
         return view('cv.user_detail_edit', compact('userDetail'));
     }
 
@@ -99,6 +105,8 @@ class UserDetailController extends Controller
      */
     public function update(Request $request, userDetail $userDetail)
     {
+        Gate::authorize('crudCV', $userDetail->CV);
+
         $request->validate([
             'firstname' => 'required|alpha',
             'lastname' => 'required|alpha',
@@ -120,7 +128,7 @@ class UserDetailController extends Controller
         ];
             
         if($userDetail->update($user_details)){
-            return redirect()->route('cv.index', ['cv' => $userDetail->cv_id])->withSuccess("Your details is successfully updated");
+            return redirect()->route('cv.index', ['cv' => $userDetail->CV])->withSuccess("Your details is successfully updated");
         };
 
         return back()->route('cv.index')->withError("An error occured!");

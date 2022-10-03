@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Education;
 use App\Models\CV;
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -15,6 +17,8 @@ class EducationController extends Controller
      */
     public function index(CV $cv)
     {
+        Gate::authorize('crudCV', $cv);
+
         return view('cv.education', compact('cv'));
     }
 
@@ -25,6 +29,8 @@ class EducationController extends Controller
      */
     public function create(Cv $cv, Request $request)
     {
+        Gate::authorize('crudCV', $cv);
+
         $request->validate([
             'school_name' => 'required',
             'school_location' => 'required',
@@ -80,6 +86,8 @@ class EducationController extends Controller
      */
     public function edit(Education $education)
     {
+        Gate::authorize('crudCV', $education->CV);
+
         return view('cv.education_edit', compact('education'));
     }
 
@@ -92,6 +100,8 @@ class EducationController extends Controller
      */
     public function update(Request $request, Education $education)
     {
+        Gate::authorize('crudCV', $education->CV);
+
         $request->validate([
             'school_name' => 'required',
             'school_location' => 'required',
@@ -109,10 +119,10 @@ class EducationController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date
         ])){
-            return redirect()->route('cv.index',['cv' => $education->cv_id])->withSuccess("Education is updated successfully");
+            return redirect()->route('cv.index',['cv' => $education->CV])->withSuccess("Education is updated successfully");
         }
 
-        return redirect()->route('cv.index',['cv' => $education->cv_id])->withError("An error occured");
+        return redirect()->route('cv.index',['cv' => $education->CV])->withError("An error occured");
     }
 
     /**
@@ -123,8 +133,10 @@ class EducationController extends Controller
      */
     public function delete(Education $education)
     {
+        Gate::authorize('crudCV', $education->CV);
+
         if($education->delete()){
-            return redirect()->route('cv.index', ['cv' => $education->cv_id])->withSuccess("Education is successfully deleted");
+            return redirect()->route('cv.index', ['cv' => $education->CV])->withSuccess("Education is successfully deleted");
         }
     }
 }
